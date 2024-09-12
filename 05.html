@@ -1,0 +1,21 @@
+sequenceDiagram
+    participant Browser
+    participant Server
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    Server-->>Browser: HTML document
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    Server-->>Browser: CSS file
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    Server-->>Browser: JavaScript file
+
+    activate Browser
+    Browser->>Browser: SPA initialization
+    deactivate Browser
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/data.json (Note Data)
+    Server-->>Browser: JSON data ([{content: "Note 1", date: "2023-01-01"}...])
+
+    Note over Browser: Browser interacts with SPA without reloading

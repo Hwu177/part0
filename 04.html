@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant Browser
+    participant Server
+
+    Browser->>Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+    Server-->>Browser: HTML-code
+
+    Browser->>Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    Server-->>Browser: main.css
+
+    Browser->>Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    Server-->>Browser: main.js
+
+    Browser->>Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    Note right of Browser: with form data { note: "New note content" }
+    Server-->>Browser: HTTP 302 Redirect
+
+    Browser->>Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+    Server-->>Browser: HTML-code with updated notes

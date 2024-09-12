@@ -1,0 +1,23 @@
+sequenceDiagram
+    participant Browser
+    participant Server
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    Server-->>Browser: HTML document
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    Server-->>Browser: CSS file
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    Server-->>Browser: JavaScript file
+
+    activate Browser
+    Browser->>Browser: SPA initialization
+    deactivate Browser
+
+    Browser->>Server: GET https://studies.cs.helsinki.fi/exampleapp/data.json (Initial Notes Data)
+    Server-->>Browser: JSON data ([{content: "single page app does not reload the whole page", date: "date: "2019-05-25T15:"}...])
+
+    Server-->>Browser: JSON response (updated note data)
+
+    Browser->>Browser: Update UI with new note
